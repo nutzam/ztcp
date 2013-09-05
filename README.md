@@ -6,10 +6,18 @@
 
 **检查依赖库**
 
-本项目依赖 [zgo](https://github.com/nutzam/zgo)。 如果你没有安装过，请到 
-[zgo 的主页](https://github.com/nutzam/zgo) 查看其说明文档。或者你可以执行一遍:
+本项目依赖
 
+* [zgo](https://github.com/nutzam/zgo) : 需要它提供的一些便利函数
+* [iconv-go](https://github.com/djimenez/iconv-go) : 需要用它来转换各种编码的 HTTP 页面
+
+它们的安装很简单，请到它们的主页 查看其说明文档。我反正是这么装的:
+
+	# 安装 zgo
 	go get github.com/nutzam/zgo
+	
+	# 安装 iconv-go
+	go get github.com/djimenez/iconv-go
 	
 确保这个代码库已经被装到你机器上了
 
