@@ -13,7 +13,7 @@ var body = flag.String("body", "", "Content to send")
 var file = flag.String("f", "", "File as the content to Send")
 var out = flag.String("out", "none", "Show Header information")
 var cookie = flag.String("cookie", "", "for HTTP only")
-var cookief = flag.String("cookief", "", "for HTTP only")
+var cookief = flag.String("cookief", "", "read cookie from file, for HTTP only")
 
 // 程序的主入口
 func main() {
