@@ -55,11 +55,14 @@ func (to *TcpObj) DoHttp() {
 	req := to.createRequestHeader()
 
 	// 如果要发送 POST 请求，特殊的设置
-	if len(to.Body) > 0 {
+	switch {
+	// 根据 body 参数发送
+	case len(to.Body) > 0:
 		to.setupRequestContentType(req)
 		req.Header.Set("Content-Length", strconv.Itoa(len(to.Body)))
 		req.Body = ioutil.NopCloser(strings.NewReader(to.Body))
-	} else if nil != to.File {
+	// 根据 -f 指定的文件发送
+	case nil != to.File:
 		to.setupRequestContentType(req)
 		req.Header.Set("Content-Length", fmt.Sprint(z.Fszf(to.File)))
 		req.Body = to.File
@@ -76,9 +79,12 @@ func (to *TcpObj) DoHttp() {
 		// 打印分隔行
 		fmt.Println(sep("-", 80), ":req.BODY")
 		// 打印请求体
-		if len(to.Body) > 0 {
+		switch {
+		// 打印请求参数
+		case len(to.Body) > 0:
 			fmt.Println(to.Body)
-		} else if nil != to.File {
+		// 打印文件内容
+		case nil != to.File:
 			fi := z.Fif(to.File)
 			fmt.Printf("$>: %s %dbytes (%s) %s\n",
 				fi.Mode().String(),
@@ -134,6 +140,13 @@ func (to *TcpObj) createRequestHeader() *http.Request {
 	req.Header.Set("Connection", "keep-alive")
 	req.Header.Set("Host", host)
 	req.Header.Set("User-Agent", user_agents["chrome"])
+
+	// 填充自定义头部信息
+	if len(to.Header) > 0 {
+		for key, val := range to.Header {
+			req.Header.Set(key, val)
+		}
+	}
 
 	// 填充 Cookie
 	if !z.IsBlank(to.Cookie) {

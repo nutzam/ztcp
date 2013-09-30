@@ -61,14 +61,8 @@
 	
 	# 发送普通 GET 到 www.google.com
 	ztcp -http=www.google.com
-	
-## 发送 Cookie
 
-    # 发送普通 cookie 字符串
-    ztcp -http=/app/doit -cookie="CNZZDATA1291011=cnzz_eid;"
 
-    # 发送文件里的 cookie 字符串
-    ztcp -http=/app/doit -cookief="mycookie.txt"
 
 ## 普通 POST 请求
 	
@@ -107,3 +101,25 @@
 	html : text/html
 	png  : image/png
     file : application/octet-stream
+
+## 指定 Header
+
+在 `-http` 模式下，你可以给定一个 JSON 字符串或者文件来定制你要发送的 HTTP HEADER
+
+    # 发送普通 cookie 字符串
+    ztcp -http=/app/doit -cookie="CNZZDATA1291011=cnzz_eid;"
+
+    # 发送文件里的 cookie 字符串
+    ztcp -http=/app/doit -cookief="mycookie.txt"	
+			
+## 指定 Cookie
+
+在 `-http` 模式下，为了更加便利的指定 cookie，提供了 cookie 选项。
+它的优先级比通过 `-header` 要高。
+
+    # 发送普通 cookie 字符串
+    ztcp -http=/app/doit -cookie="CNZZDATA1291011=cnzz_eid;"
+
+    # 发送文件里的 cookie 字符串
+    ztcp -http=/app/doit -cookief="mycookie.txt"
+
