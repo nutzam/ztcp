@@ -107,10 +107,10 @@
 在 `-http` 模式下，你可以给定一个 JSON 字符串或者文件来定制你要发送的 HTTP HEADER
 
     # 发送普通 cookie 字符串
-    ztcp -http=/app/doit -cookie="CNZZDATA1291011=cnzz_eid;"
+    ztcp -http=/app/doit -header="CNZZDATA1291011=cnzz_eid;"
 
     # 发送文件里的 cookie 字符串
-    ztcp -http=/app/doit -cookief="mycookie.txt"	
+    ztcp -http=/app/doit -headerf="mycookie.txt"	
 			
 ## 指定 Cookie
 
